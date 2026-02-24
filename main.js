@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initFAQ();
   initFadeIn();
   initQRModal();
-  initRSVPForm();
 });
 
 /* ---------- QR Modal ---------- */
@@ -50,40 +49,6 @@ function initQRModal() {
     if (e.key === 'Escape' && qrModal.classList.contains('active')) {
       closeQRModal();
     }
-  });
-}
-
-/* ---------- RSVP Form Success ---------- */
-function initRSVPForm() {
-  const form = document.getElementById('custom-rsvp-form');
-  const successMsg = document.getElementById('rsvp-success-message');
-
-  if (!form || !successMsg) return;
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const submitBtn = document.getElementById('rsvp-submit-btn');
-    submitBtn.disabled = true;
-    submitBtn.innerText = '送信中...';
-
-    const formData = new FormData(form);
-
-    fetch('/', {
-      method: 'POST',
-      body: formData
-    })
-      .then(() => {
-        form.style.display = 'none';
-        successMsg.style.display = 'block';
-        successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      })
-      .catch((error) => {
-        console.error('Form submission error:', error);
-        submitBtn.disabled = false;
-        submitBtn.innerText = '送信 / ส่ง';
-        alert('エラーが発生しました。もう一度お試しください。');
-      });
   });
 }
 

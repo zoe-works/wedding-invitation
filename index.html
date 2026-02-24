@@ -259,84 +259,23 @@
       <p class="rsvp-lead">出欠のご回答をお願いいたします。<br>กรุณาตอบรับคำเชิญเพื่อร่วมงาน<br><br>回答締切 / RSVP
         By：<strong>2026年5月31日（日） / 31 พ.ค. 2026</strong></p>
 
-      <form name="wedding-rsvp" method="POST" data-netlify="true" enctype="multipart/form-data" id="custom-rsvp-form"
-        class="custom-rsvp-form">
-        <!-- 隠しフィールド（Netlify用） -->
-        <input type="hidden" name="form-name" value="wedding-rsvp" />
-        <!-- Name -->
-        <div class="form-group">
-          <label for="rsvp-name">お名前 / ชื่อ-นามสกุล <span class="required">*</span></label>
-          <input type="text" id="rsvp-name" name="name" placeholder="回答を入力" required>
-        </div>
+      <!-- 方式A: 外部フォームリンク -->
+      <div class="rsvp-main">
+        <a href="https://forms.gle/5UndwjrcG2Q7cXhh7" target="_blank" rel="noopener noreferrer"
+          class="btn btn-primary btn-large">
+          出欠回答フォームを開く<br><span style="font-size: 0.8em; font-weight: normal;">เปิดแบบฟอร์มตอบรับคำเชิญ (Google
+            Form)</span>
+        </a>
+        <p class="rsvp-note">※ 外部のGoogleフォームが開きます / เปิดลิงก์ไปยัง Google Form</p>
+      </div>
 
-        <!-- Attendance -->
-        <div class="form-group">
-          <label>ご出欠 / การเข้าร่วม <span class="required">*</span></label>
-          <div class="radio-group">
-            <label class="radio-label">
-              <input type="radio" name="attendance" value="出席" required>
-              <span class="radio-custom"></span> 出席
-            </label>
-            <label class="radio-label">
-              <input type="radio" name="attendance" value="欠席" required>
-              <span class="radio-custom"></span> 欠席
-            </label>
-          </div>
-        </div>
-
-        <!-- Companions -->
-        <div class="form-group">
-          <label for="rsvp-companions">同伴者人数 / จำนวนผู้ติดตาม</label>
-          <div class="select-wrapper">
-            <select id="rsvp-companions" name="companions">
-              <option value="" disabled selected>選択</option>
-              <option value="なし / ไม่มี">なし / ไม่มี</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- Message -->
-        <div class="form-group">
-          <label for="rsvp-message">
-            メッセージ / ข้อความ<br>
-            <span class="label-sub">新郎新婦へのメッセージをお願いします / ข้อความถึงเจ้าบ่าวและเจ้าสาว</span>
-          </label>
-          <textarea id="rsvp-message" name="message" placeholder="回答を入力" rows="3"></textarea>
-        </div>
-
-        <button type="submit" id="rsvp-submit-btn" class="btn btn-primary btn-submit">送信 / ส่ง</button>
-
-        <!-- ========== QR CODE SECTION ========== -->
-        <div class="gift-section">
-          <h3 class="gift-title">A Special Gift for the Couple 💝</h3>
-          <p class="gift-sub">ร่วมแสดงความยินดีด้วยการมอบของขวัญแด่<br>เจ้าบ่าวและเจ้าสาว 💝</p>
-          <button type="button" id="show-qr-btn" class="btn btn-gift">
-            <span class="heart-icon">♡</span> CLICK TO QR CODE (พร้อมเพย์)
-          </button>
-
-          <!-- PaySlip Upload (Moved under QR button) -->
-          <div class="payslip-wrapper">
-            <label for="rsvp-payslip" class="payslip-label">
-              （任意）お祝い金のお振込控え / (Optional) PaySlip<br>
-              <span class="label-sub">画像をアップロードしてください / กรุณาอัปโหลดรูปภาพ</span>
-            </label>
-            <input type="file" id="rsvp-payslip" name="payslip" accept="image/*" class="file-input">
-          </div>
-        </div>
-      </form>
-
-      <!-- Netlifyのデフォルトの成功画面ではなくこの画面を表示させる（JSでハンドリング） -->
-      <div id="rsvp-success-message" class="rsvp-success-message" style="display: none;">
-        <p>ご回答ありがとうございました！<br>ขอบคุณสำหรับคำตอบของคุณ!</p>
+      <!-- ========== QR CODE SECTION ========== -->
+      <div class="gift-section">
+        <h3 class="gift-title">A Special Gift for the Couple 💝</h3>
+        <p class="gift-sub">ร่วมแสดงความยินดีด้วยการมอบของขวัญแด่<br>เจ้าบ่าวและเจ้าสาว 💝</p>
+        <button type="button" id="show-qr-btn" class="btn btn-gift">
+          <span class="heart-icon">♡</span> CLICK TO QR CODE (พร้อมเพย์)
+        </button>
       </div>
 
 
