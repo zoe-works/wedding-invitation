@@ -775,6 +775,13 @@ ul {
    RSVP
    ======================================== */
 
+.rsvp-lead {
+  text-align: center;
+  color: var(--color-text-light);
+  margin-bottom: 40px;
+  font-size: 1rem;
+}
+
 .rsvp-main {
   text-align: center;
   margin-bottom: 48px;
