@@ -259,18 +259,14 @@
       <p class="rsvp-lead">出欠のご回答をお願いいたします。<br>กรุณาตอบรับคำเชิญเพื่อร่วมงาน<br><br>回答締切 / RSVP
         By：<strong>2026年5月31日（日） / 31 พ.ค. 2026</strong></p>
 
-      <!-- Hidden iframe for silent form submission -->
-      <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"
-        onload="if(window.submitted) {showRSVPSuccess();}"></iframe>
-
-      <form
-        action="https://docs.google.com/forms/d/e/1FAIpQLSc7uam0NWKnwlE1Hf_hWkBF6rpjJK2pNmkmlv3iV1ZqoMEHIw/formResponse"
-        method="POST" target="hidden_iframe" id="custom-rsvp-form" class="custom-rsvp-form"
-        onsubmit="window.submitted=true; document.getElementById('rsvp-submit-btn').disabled = true; document.getElementById('rsvp-submit-btn').innerText = '送信中...';">
+      <form name="wedding-rsvp" method="POST" data-netlify="true" enctype="multipart/form-data" id="custom-rsvp-form"
+        class="custom-rsvp-form">
+        <!-- 隠しフィールド（Netlify用） -->
+        <input type="hidden" name="form-name" value="wedding-rsvp" />
         <!-- Name -->
         <div class="form-group">
           <label for="rsvp-name">お名前 / ชื่อ-นามสกุล <span class="required">*</span></label>
-          <input type="text" id="rsvp-name" name="entry.2005620554" placeholder="回答を入力" required>
+          <input type="text" id="rsvp-name" name="name" placeholder="回答を入力" required>
         </div>
 
         <!-- Attendance -->
@@ -278,11 +274,11 @@
           <label>ご出欠 / การเข้าร่วม <span class="required">*</span></label>
           <div class="radio-group">
             <label class="radio-label">
-              <input type="radio" name="entry.1045781291" value="出席" required>
+              <input type="radio" name="attendance" value="出席" required>
               <span class="radio-custom"></span> 出席
             </label>
             <label class="radio-label">
-              <input type="radio" name="entry.1045781291" value="欠席" required>
+              <input type="radio" name="attendance" value="欠席" required>
               <span class="radio-custom"></span> 欠席
             </label>
           </div>
@@ -292,7 +288,7 @@
         <div class="form-group">
           <label for="rsvp-companions">同伴者人数 / จำนวนผู้ติดตาม</label>
           <div class="select-wrapper">
-            <select id="rsvp-companions" name="entry.1166974658">
+            <select id="rsvp-companions" name="companions">
               <option value="" disabled selected>選択</option>
               <option value="なし / ไม่มี">なし / ไม่มี</option>
               <option value="1">1</option>
@@ -314,23 +310,33 @@
             メッセージ / ข้อความ<br>
             <span class="label-sub">新郎新婦へのメッセージをお願いします / ข้อความถึงเจ้าบ่าวและเจ้าสาว</span>
           </label>
-          <textarea id="rsvp-message" name="entry.839337160" placeholder="回答を入力" rows="3"></textarea>
+          <textarea id="rsvp-message" name="message" placeholder="回答を入力" rows="3"></textarea>
+        </div>
+
+        <!-- PaySlip Upload -->
+        <div class="form-group">
+          <label for="rsvp-payslip">
+            （任意）お祝い金のお振込控え / (Optional) PaySlip<br>
+            <span class="label-sub">画像をアップロードしてください / กรุณาอัปโหลดรูปภาพ</span>
+          </label>
+          <input type="file" id="rsvp-payslip" name="payslip" accept="image/*" class="file-input">
+        </div>
+
+        <!-- ========== QR CODE SECTION ========== -->
+        <div class="gift-section">
+          <h3 class="gift-title">A Special Gift for the Couple 💝</h3>
+          <p class="gift-sub">ร่วมแสดงความยินดีด้วยการมอบของขวัญแด่<br>เจ้าบ่าวและเจ้าสาว 💝</p>
+          <button type="button" id="show-qr-btn" class="btn btn-gift">
+            <span class="heart-icon">♡</span> CLICK TO QR CODE (พร้อมเพย์)
+          </button>
         </div>
 
         <button type="submit" id="rsvp-submit-btn" class="btn btn-primary btn-submit">送信 / ส่ง</button>
       </form>
 
+      <!-- Netlifyのデフォルトの成功画面ではなくこの画面を表示させる（JSでハンドリング） -->
       <div id="rsvp-success-message" class="rsvp-success-message" style="display: none;">
         <p>ご回答ありがとうございました！<br>ขอบคุณสำหรับคำตอบของคุณ!</p>
-      </div>
-
-      <!-- ========== QR CODE SECTION ========== -->
-      <div class="gift-section">
-        <h3 class="gift-title">A Special Gift for the Couple 💝</h3>
-        <p class="gift-sub">ร่วมแสดงความยินดีด้วยการมอบของขวัญแด่<br>เจ้าบ่าวและเจ้าสาว 💝</p>
-        <button id="show-qr-btn" class="btn btn-gift">
-          <span class="heart-icon">♡</span> CLICK TO QR CODE (พร้อมเพย์)
-        </button>
       </div>
 
 
@@ -407,7 +413,7 @@
     <div class="container">
       <h2 class="section-title">Contact<br><span
           style="font-size: 0.6em; color: var(--color-text-light);">ติดต่อสอบถาม</span></h2>
-      <p class="contact-lead">ご不明な点がございましたら、お気軽にご連絡ください。<br>หากมีข้อสงสัยใดๆ สามารถติดต่อเราได้เลยค่ะ/ครับ</p>
+      <p class="contact-lead">ご不明な点がございましたら、お気軽にご連絡ください。<br>หากมีข้อสงสัยใด々 สามารถติดต่อเราได้เลยค่ะ/ครับ</p>
       <div class="contact-grid">
         <div class="contact-card">
           <h3>新郎 Shota</h3>
@@ -444,9 +450,10 @@
 
   <!-- ========== QR MODAL ========== -->
   <div class="modal" id="qr-modal" role="dialog" aria-modal="true" aria-label="QR Code">
-    <button class="modal-close" id="qr-modal-close" aria-label="閉じる">&times;</button>
-    <img class="modal-image" id="qr-modal-image" src="assets/QR.jpeg" alt="QR Code"
-      style="max-height: 80vh; border-radius: 8px;">
+    <div class="modal-content-qr">
+      <button class="modal-close qr-modal-close" id="qr-modal-close" aria-label="閉じる">&times;</button>
+      <img class="modal-image qr-modal-img" id="qr-modal-image" src="assets/QR.jpeg" alt="QR Code">
+    </div>
   </div>
 
   <!-- ========== BGM ========== -->

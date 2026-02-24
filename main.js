@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFAQ();
   initFadeIn();
   initQRModal();
+  initRSVPForm();
 });
 
 /* ---------- QR Modal ---------- */
@@ -53,18 +54,38 @@ function initQRModal() {
 }
 
 /* ---------- RSVP Form Success ---------- */
-window.showRSVPSuccess = function () {
+function initRSVPForm() {
   const form = document.getElementById('custom-rsvp-form');
   const successMsg = document.getElementById('rsvp-success-message');
 
-  if (form && successMsg) {
-    form.style.display = 'none';
-    successMsg.style.display = 'block';
+  if (!form || !successMsg) return;
 
-    // Smooth scroll to the success message
-    successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
-};
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const submitBtn = document.getElementById('rsvp-submit-btn');
+    submitBtn.disabled = true;
+    submitBtn.innerText = '送信中...';
+
+    const formData = new FormData(form);
+
+    fetch('/', {
+      method: 'POST',
+      body: formData
+    })
+      .then(() => {
+        form.style.display = 'none';
+        successMsg.style.display = 'block';
+        successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      })
+      .catch((error) => {
+        console.error('Form submission error:', error);
+        submitBtn.disabled = false;
+        submitBtn.innerText = '送信 / ส่ง';
+        alert('エラーが発生しました。もう一度お試しください。');
+      });
+  });
+}
 
 /* ---------- Envelope Animation & BGM ---------- */
 let isMuted = false;
