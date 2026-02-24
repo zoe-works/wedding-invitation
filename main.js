@@ -4,6 +4,7 @@
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initEnvelope();
   initHeader();
   initSmoothScroll();
   initHamburger();
@@ -11,6 +12,41 @@ document.addEventListener('DOMContentLoaded', () => {
   initFAQ();
   initFadeIn();
 });
+
+/* ---------- Envelope Animation & BGM ---------- */
+function initEnvelope() {
+  const envelopeScreen = document.getElementById('envelope-screen');
+  const envelopeWrapper = document.getElementById('envelope-wrapper');
+  const bgm = document.getElementById('bgm');
+
+  // Add locked class immediately just in case (though it's in HTML)
+  document.body.classList.add('locked');
+
+  if (!envelopeScreen || !envelopeWrapper) return;
+
+  envelopeWrapper.addEventListener('click', () => {
+    // 1. Play BGM
+    if (bgm) {
+      bgm.play().catch(error => {
+        console.log("Audio play failed:", error);
+      });
+    }
+
+    // 2. Start opening animation
+    envelopeScreen.classList.add('is-opening');
+
+    // 3. Fade out overlay and remove lock
+    setTimeout(() => {
+      envelopeScreen.classList.add('is-hidden');
+      document.body.classList.remove('locked');
+
+      // Optional: remove DOM element to clean up
+      setTimeout(() => {
+        envelopeScreen.remove();
+      }, 800);
+    }, 1200); // Wait 1.2s for flap and letter animations
+  });
+}
 
 /* ---------- Header scroll effect ---------- */
 function initHeader() {

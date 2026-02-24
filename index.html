@@ -20,6 +20,19 @@
 </head>
 
 <body>
+  <!-- ========== ENVELOPE OVERLAY ========== -->
+  <div id="envelope-screen" class="envelope-screen">
+    <div class="envelope-wrapper" id="envelope-wrapper">
+      <div class="envelope">
+        <div class="envelope-flap"></div>
+        <div class="envelope-letter">
+          <p>Tap to Open</p>
+          <p style="font-size: 0.8em; margin-top: 4px;">แตะเพื่อเปิด</p>
+        </div>
+        <div class="envelope-front"></div>
+      </div>
+    </div>
+  </div>
 
   <!-- ========== HEADER ========== -->
   <header id="header" class="header">
@@ -350,6 +363,9 @@
 
   <!-- ========== TOAST ========== -->
   <div class="toast" id="toast" aria-live="polite"></div>
+
+  <!-- ========== BGM ========== -->
+  <audio id="bgm" src="assets/bgm.mp3" loop preload="auto"></audio>
 
   <script src="main.js"></script>
 </body>

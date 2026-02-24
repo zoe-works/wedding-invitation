@@ -1102,3 +1102,115 @@ ul {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ========================================
+   ENVELOPE OVERLAY
+   ======================================== */
+body.locked {
+  overflow: hidden;
+}
+
+.envelope-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s ease, visibility 0.8s;
+}
+
+.envelope-screen.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.envelope-wrapper {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  cursor: pointer;
+  animation: envelope-float 3s ease-in-out infinite;
+}
+
+@keyframes envelope-float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.envelope-screen.is-opening .envelope-wrapper {
+  animation: none;
+}
+
+.envelope {
+  position: absolute;
+  inset: 0;
+  background: var(--color-highlight-bg);
+  /* inner color */
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.envelope-front {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-left: 150px solid rgba(255, 255, 255, 0.95);
+  border-right: 150px solid rgba(255, 255, 255, 0.95);
+  border-bottom: 100px solid #ffffff;
+  border-top: 100px solid transparent;
+  border-radius: 0 0 4px 4px;
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  border-top: 110px solid #ffffff;
+  transform-origin: top;
+  z-index: 4;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0.2s;
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.05));
+}
+
+.envelope-screen.is-opening .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 0;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0.2s;
+}
+
+.envelope-letter {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  background: #fff;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent-dark);
+  font-family: var(--font-accent);
+  font-size: 1.2rem;
+  z-index: 1;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+}
+
+.envelope-screen.is-opening .envelope-letter {
+  transform: translateY(-80px);
+  z-index: 2;
+}
