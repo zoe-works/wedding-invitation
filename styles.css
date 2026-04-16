@@ -1179,9 +1179,9 @@ ul {
 
 .contact-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 24px;
-  max-width: 600px;
+  max-width: 320px;
   margin: 0 auto;
 }
 
@@ -1333,10 +1333,6 @@ ul {
     gap: 8px;
   }
 
-  /* Contact */
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
 
   /* Section title */
   .section-title {
