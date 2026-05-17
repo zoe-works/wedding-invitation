@@ -414,6 +414,34 @@ ul {
 }
 
 /* ========================================
+   CARDS
+   ======================================== */
+.cards {
+  background: var(--color-white);
+  padding-top: 0;
+}
+
+.cards-inner {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-image-wrap {
+  width: 48%;
+  max-width: 480px;
+}
+
+.card-image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  object-fit: cover;
+}
+
+/* ========================================
    DETAILS
    ======================================== */
 .details-grid {
@@ -1302,6 +1330,21 @@ ul {
 
   .about-image-wrap {
     width: 200px;
+  }
+
+  /* Cards */
+  .cards {
+    padding-top: 0;
+  }
+
+  .cards-inner {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .card-image-wrap {
+    width: 100%;
+    max-width: 400px;
   }
 
   /* Details */
