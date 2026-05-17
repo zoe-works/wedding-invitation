@@ -423,14 +423,15 @@ ul {
 
 .cards-inner {
   display: flex;
+  flex-direction: column;
   gap: 32px;
   align-items: center;
   justify-content: center;
 }
 
 .card-image-wrap {
-  width: 48%;
-  max-width: 480px;
+  width: 100%;
+  max-width: 500px;
 }
 
 .card-image {
